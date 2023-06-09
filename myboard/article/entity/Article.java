@@ -1,4 +1,4 @@
-package myboard;
+package myboard.article.entity;
 
 public class Article {
     private int id;
