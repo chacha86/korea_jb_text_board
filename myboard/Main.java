@@ -16,7 +16,13 @@ public class Main {
                 break;
 
             } else if (cmd.equals("add")) {
-                // add기능 구현
+
+                System.out.printf("게시물 제목을 입력해주세요 : ");
+                String title = scan.nextLine();
+                System.out.printf("게시물 내용을 입력해주세요 : ");
+                String body = scan.nextLine();
+                System.out.println("게시물이 등록되었습니다.");
+
             }
         }
     }
