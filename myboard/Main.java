@@ -61,6 +61,21 @@ public class Main {
                 titles.set(targetIdx, title);
                 bodies.set(targetIdx, body);
 
+            } else if(cmd.equals("delete")) {
+                System.out.printf("삭제할 게시물 번호 : ");
+                int target = scan.nextInt();
+                int targetIdx = target - 1;
+                scan.nextLine();
+
+                if(targetIdx < 0 || target > titles.size()) {
+                    System.out.println("없는 게시물 번호입니다.");
+                    continue;
+                }
+
+                titles.remove(targetIdx);
+                bodies.remove(targetIdx);
+
+                System.out.printf("%d번 게시물이 삭제되었습니다.\n", target);
             }
         }
     }
