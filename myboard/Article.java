@@ -1,21 +1,19 @@
 package myboard;
 
-import java.util.ArrayList;
-
 public class Article {
-    private int no;
+    private int id;
     private String title;
     private String body;
 
     public Article(){}
     public Article(int no, String title, String body) {
-        this.no = no;
+        this.id = no;
         this.title = title;
         this.body = body;
     }
 
-    public int getNo() {
-        return no;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -26,8 +24,8 @@ public class Article {
         return body;
     }
 
-    public void setNo(int no) {
-        this.no = no;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
