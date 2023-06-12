@@ -1,16 +1,17 @@
 package myboard;
 
+import myboard.article.controller.ArticleController;
 import myboard.system.controller.SystemController;
 
 import java.util.Scanner;
 
 public class BoardApp {
     Scanner scan;
-    BoardController boardController;
+    ArticleController articleController;
     SystemController systemController;
     public BoardApp() {
         this.scan = new Scanner(System.in);
-        boardController = new BoardController();
+        articleController = new ArticleController();
         systemController = new SystemController();
     }
     public void run() {
@@ -24,13 +25,13 @@ public class BoardApp {
                 break;
 
             } else if (cmd.equals("add")) {
-                boardController.add();
+                articleController.add();
             } else if (cmd.equals("list")) {
-                boardController.list();
+                articleController.list();
             } else if(cmd.equals("update")) {
-                boardController.update();
+                articleController.update();
             } else if(cmd.equals("delete")) {
-                boardController.delete();
+                articleController.delete();
             }
         }
     }
