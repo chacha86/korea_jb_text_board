@@ -12,7 +12,7 @@ public class ArticleController {
 
     Scanner scan = new Scanner(System.in);
     ArrayList<Article> articles = new ArrayList<>();
-    int lastId = 1;
+    int lastId = 4;
 
     public void add() {
         System.out.printf("게시물 제목을 입력해주세요 : ");
@@ -20,11 +20,7 @@ public class ArticleController {
         System.out.printf("게시물 내용을 입력해주세요 : ");
         String body = scan.nextLine();
 
-        LocalDateTime currentDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-        String formattedDate = currentDate.format(formatter);
-
-        Article article = new Article(lastId, title, body, formattedDate);
+        Article article = new Article(lastId, title, body, getCurrentDate());
         articles.add(article);
         lastId++;
 
@@ -101,6 +97,24 @@ public class ArticleController {
             System.out.println("등록날짜   : " + article.getRegDate());
             System.out.println("==============================");
         }
+    }
+
+    public void testInit() {
+        Article article1 = new Article(1, "안녕하세요 반갑습니다. 자바 공부중이에요.", "자바 너무 재밌어요", getCurrentDate());
+        Article article2 = new Article(2, "자바 질문좀 할게요~", "MVC 패턴이 뭐에요?", getCurrentDate());
+        Article article3 = new Article(3, "정처기 따야되나요?", "이거 따야 돼요?", getCurrentDate());
+
+        articles.add(article1);
+        articles.add(article2);
+        articles.add(article3);
+    }
+
+    public String getCurrentDate() {
+        LocalDateTime currentDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+        String formattedDate = currentDate.format(formatter);
+
+        return formattedDate;
     }
 
     public int findArticleIndex(int target) {
