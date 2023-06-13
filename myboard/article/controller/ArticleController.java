@@ -99,6 +99,21 @@ public class ArticleController {
         }
     }
 
+    public void search() {
+        System.out.printf("검색어를 입력해주세요 : ");
+        String keyword = scan.nextLine();
+
+        System.out.println("====================");
+        for (int i = 0; i < articles.size(); i++) {
+            Article article = articles.get(i);
+            if (article.getTitle().contains(keyword)) {
+                System.out.printf("번호 : %d\n", article.getId() );
+                System.out.printf("제목 : %s\n", article.getTitle() );
+                System.out.println("====================");
+            }
+        }
+    }
+
     public void testInit() {
         Article article1 = new Article(1, "안녕하세요 반갑습니다. 자바 공부중이에요.", "자바 너무 재밌어요", getCurrentDate());
         Article article2 = new Article(2, "자바 질문좀 할게요~", "MVC 패턴이 뭐에요?", getCurrentDate());

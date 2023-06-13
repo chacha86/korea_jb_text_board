@@ -36,6 +36,8 @@ public class BoardApp {
                 articleController.delete();
             } else if(cmd.equals("detail")) {
                 articleController.detail();
+            } else if(cmd.equals("search")) {
+                articleController.search();
             }
         }
     }
