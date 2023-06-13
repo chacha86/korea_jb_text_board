@@ -32,15 +32,7 @@ public class ArticleController {
             System.out.println("등록된 게시물이 없습니다.");
             return;
         }
-
-        System.out.println("====================");
-        for(int i = 0; i < articles.size(); i++) {
-            Article article = articles.get(i);
-
-            System.out.printf("번호 : %d\n", article.getId() );
-            System.out.printf("제목 : %s\n", article.getTitle() );
-            System.out.println("====================");
-        }
+        printArticleList(articles);
     }
 
     public void update() {
@@ -103,15 +95,20 @@ public class ArticleController {
         System.out.printf("검색어를 입력해주세요 : ");
         String keyword = scan.nextLine();
 
-        System.out.println("====================");
+        ArrayList<Article> searchedArticles = new ArrayList<>();
+
         for (int i = 0; i < articles.size(); i++) {
             Article article = articles.get(i);
             if (article.getTitle().contains(keyword)) {
-                System.out.printf("번호 : %d\n", article.getId() );
-                System.out.printf("제목 : %s\n", article.getTitle() );
-                System.out.println("====================");
+                searchedArticles.add(article);
             }
         }
+        if(searchedArticles.size() == 0) {
+            System.out.println("검색 결과가 없습니다.");
+            return;
+        }
+
+        printArticleList(searchedArticles);
     }
 
     public void testInit() {
@@ -130,6 +127,17 @@ public class ArticleController {
         String formattedDate = currentDate.format(formatter);
 
         return formattedDate;
+    }
+
+    public void printArticleList(ArrayList<Article> list) {
+        System.out.println("====================");
+        for(int i = 0; i < list.size(); i++) {
+            Article article = list.get(i);
+
+            System.out.printf("번호 : %d\n", article.getId() );
+            System.out.printf("제목 : %s\n", article.getTitle() );
+            System.out.println("====================");
+        }
     }
 
     public int findArticleIndex(int target) {
