@@ -15,9 +15,6 @@ public class BoardApp {
         systemController = new SystemController();
     }
     public void run() {
-
-        articleController.testInit();
-
         while (true) {
             System.out.printf("명령어 : ");
             String cmd = scan.nextLine();
