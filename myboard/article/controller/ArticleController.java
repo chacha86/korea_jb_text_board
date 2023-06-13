@@ -45,7 +45,7 @@ public class ArticleController {
         int target = scan.nextInt();
         scan.nextLine(); // 버퍼 비우기용
 
-        int targetIdx = findArticleIndex(articles, target);
+        int targetIdx = findArticleIndex(target);
 
         if(targetIdx == -1) {
             System.out.println("없는 게시물 번호입니다.");
@@ -67,7 +67,7 @@ public class ArticleController {
         int target = scan.nextInt();
         scan.nextLine(); // 버퍼 비우기용
 
-        int targetIdx = findArticleIndex(articles, target);
+        int targetIdx = findArticleIndex(target);
 
         if(targetIdx == -1) {
             System.out.println("없는 게시물 번호입니다.");
@@ -77,7 +77,25 @@ public class ArticleController {
         System.out.printf("%d번 게시물이 삭제되었습니다.\n", target);
     }
 
-    public int findArticleIndex(ArrayList<Article> articles, int target) {
+    public void detail() {
+        System.out.println("게시물 번호를 입력해주세요.");
+        int target = scan.nextInt();
+        scan.nextLine();
+        int targetId = findArticleIndex(target);
+
+        if (targetId == -1) {
+            System.out.println("없는 게시물입니다.");
+        } else {
+            Article article = articles.get(targetId);
+            System.out.println("======== 게시물 상세 ========");
+            System.out.println("번호   : " + article.getId());
+            System.out.println("제목   : " + article.getTitle());
+            System.out.println("내용   : " + article.getBody());
+            System.out.println("==============================");
+        }
+    }
+
+    public int findArticleIndex(int target) {
 
         int targetIdx = -1;
 
