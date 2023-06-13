@@ -82,11 +82,14 @@ public class ArticleController {
             System.out.println("없는 게시물입니다.");
         } else {
             Article article = articles.get(targetId);
+            article.setHit(article.getHit() + 1);
+
             System.out.println("======== 게시물 상세 ========");
             System.out.println("번호   : " + article.getId());
             System.out.println("제목   : " + article.getTitle());
             System.out.println("내용   : " + article.getBody());
             System.out.println("등록날짜   : " + article.getRegDate());
+            System.out.println("조회수   : " + article.getHit());
             System.out.println("==============================");
         }
     }

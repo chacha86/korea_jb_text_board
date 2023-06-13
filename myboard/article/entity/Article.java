@@ -5,6 +5,7 @@ public class Article {
     private String title;
     private String body;
     private String regDate;
+    private int hit;
 
     public Article(){}
 
@@ -52,5 +53,11 @@ public class Article {
     public void setRegDate(String regDate) {
         this.regDate = regDate;
     }
+    public int getHit() {
+        return hit;
+    }
 
+    public void setHit(int hit) {
+        this.hit = hit;
+    }
 }
