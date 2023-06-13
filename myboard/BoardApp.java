@@ -1,6 +1,8 @@
 package myboard;
 
 import myboard.article.controller.ArticleController;
+import myboard.article.view.AddView;
+import myboard.common.ViewResolver;
 import myboard.system.controller.SystemController;
 
 import java.util.Scanner;
@@ -9,12 +11,15 @@ public class BoardApp {
     Scanner scan;
     ArticleController articleController;
     SystemController systemController;
+    AddView view = new AddView();
+    ViewResolver viewResolver;
     public BoardApp() {
         this.scan = new Scanner(System.in);
         articleController = new ArticleController();
         systemController = new SystemController();
     }
     public void run() {
+
         while (true) {
             System.out.printf("명령어 : ");
             String cmd = scan.nextLine();
@@ -24,7 +29,7 @@ public class BoardApp {
                 break;
 
             } else if (cmd.equals("add")) {
-                articleController.add();
+                view.render();
             } else if (cmd.equals("list")) {
                 articleController.list();
             } else if(cmd.equals("update")) {

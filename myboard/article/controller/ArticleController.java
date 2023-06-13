@@ -2,6 +2,8 @@ package myboard.article.controller;
 
 import myboard.article.entity.Article;
 import myboard.article.entity.ArticleRepository;
+import myboard.article.view.MyListView;
+import myboard.common.Request;
 import myboard.util.Util;
 
 import java.time.LocalDate;
@@ -19,15 +21,20 @@ public class ArticleController {
         articleRepository = new ArticleRepository();
     }
 
-    public void add() {
-        System.out.printf("게시물 제목을 입력해주세요 : ");
-        String title = scan.nextLine();
-        System.out.printf("게시물 내용을 입력해주세요 : ");
-        String body = scan.nextLine();
+    public void add(Request req) {
+//        System.out.printf("게시물 제목을 입력해주세요 : ");
+//        String title = scan.nextLine();
+//        System.out.printf("게시물 내용을 입력해주세요 : ");
+//        String body = scan.nextLine();
+
+        String title = (String)req.getParameter("title");
+        String body = (String)req.getParameter("body");
 
         articleRepository.insert(title, body, Util.getCurrentDate());
-
-        System.out.println("게시물이 등록되었습니다.");
+        ArrayList<Article> list = articleRepository.getArticleList();
+        req.setParameter("list", list);
+        MyListView listView = new MyListView(req);
+        listView.render();
     }
 
     public void list() {
