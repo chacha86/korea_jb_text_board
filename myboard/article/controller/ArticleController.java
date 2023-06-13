@@ -2,6 +2,9 @@ package myboard.article.controller;
 
 import myboard.article.entity.Article;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +20,11 @@ public class ArticleController {
         System.out.printf("게시물 내용을 입력해주세요 : ");
         String body = scan.nextLine();
 
-        Article article = new Article(lastId, title, body);
+        LocalDateTime currentDate = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
+        String formattedDate = currentDate.format(formatter);
+
+        Article article = new Article(lastId, title, body, formattedDate);
         articles.add(article);
         lastId++;
 
@@ -91,6 +98,7 @@ public class ArticleController {
             System.out.println("번호   : " + article.getId());
             System.out.println("제목   : " + article.getTitle());
             System.out.println("내용   : " + article.getBody());
+            System.out.println("등록날짜   : " + article.getRegDate());
             System.out.println("==============================");
         }
     }

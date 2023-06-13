@@ -4,12 +4,21 @@ public class Article {
     private int id;
     private String title;
     private String body;
+    private String regDate;
 
     public Article(){}
-    public Article(int no, String title, String body) {
-        this.id = no;
+
+    public Article(int id, String title, String body) {
+        this.id = id;
         this.title = title;
         this.body = body;
+    }
+
+    public Article(int id, String title, String body, String regDate) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.regDate = regDate;
     }
 
     public int getId() {
@@ -35,4 +44,13 @@ public class Article {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
+    }
+
 }
