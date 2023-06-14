@@ -72,4 +72,8 @@ public class ArticleRepository {
 
         return article;
     }
+
+    public void increaseArticleHit(Article article) {
+        article.setHit(article.getHit() + 1);
+    }
 }
