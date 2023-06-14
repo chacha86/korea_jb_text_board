@@ -2,33 +2,37 @@ package myboard.article.controller;
 
 import myboard.article.entity.Article;
 import myboard.article.entity.ArticleRepository;
+import myboard.article.view.ArticleView;
 import myboard.util.Util;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ArticleController {
 
-    Scanner scan = new Scanner(System.in);
     ArticleRepository articleRepository;
+    ArticleView articleview;
 
     public ArticleController() {
         articleRepository = new ArticleRepository();
+        articleview = new ArticleView();
     }
 
     public void add() {
-        System.out.printf("게시물 제목을 입력해주세요 : ");
-        String title = scan.nextLine();
-        System.out.printf("게시물 내용을 입력해주세요 : ");
-        String body = scan.nextLine();
 
+        HashMap<String, Object> param = articleview.addView();
+        String title = (String)param.get("title");
+        String body = (String)param.get("body");
         articleRepository.insert(title, body, Util.getCurrentDate());
+
 
         System.out.println("게시물이 등록되었습니다.");
     }
+
 
     public void list() {
 
@@ -38,7 +42,7 @@ public class ArticleController {
             System.out.println("등록된 게시물이 없습니다.");
             return;
         }
-        printArticleList(articles);
+        articleview.printArticleList(articles);
     }
 
     public void update() {
@@ -110,21 +114,7 @@ public class ArticleController {
             return;
         }
 
-        printArticleList(searchedArticles);
+        articleview.printArticleList(searchedArticles);
     }
-
-
-
-    public void printArticleList(ArrayList<Article> list) {
-        System.out.println("====================");
-        for(int i = 0; i < list.size(); i++) {
-            Article article = list.get(i);
-
-            System.out.printf("번호 : %d\n", article.getId() );
-            System.out.printf("제목 : %s\n", article.getTitle() );
-            System.out.println("====================");
-        }
-    }
-
 
 }
