@@ -7,15 +7,15 @@ import myboard.common.Request;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class MyListView {
+public class MyListView implements View {
     Scanner scan;
     Request request;
     ArticleController articleController;
 
-    public MyListView(Request req) {
+    public MyListView(Request request) {
         scan = new Scanner(System.in);
         articleController = new ArticleController();
-        request = req;
+        this.request = request;
     }
 
     public void render() {
@@ -28,5 +28,9 @@ public class MyListView {
             System.out.printf("제목 : %s\n", article.getTitle() );
             System.out.println("====================");
         }
+    }
+
+    public Request getRequest() {
+        return this.request;
     }
 }

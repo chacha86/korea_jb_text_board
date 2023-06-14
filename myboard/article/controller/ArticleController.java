@@ -21,7 +21,7 @@ public class ArticleController {
         articleRepository = new ArticleRepository();
     }
 
-    public void add(Request req) {
+    public Request add(Request req) {
 //        System.out.printf("게시물 제목을 입력해주세요 : ");
 //        String title = scan.nextLine();
 //        System.out.printf("게시물 내용을 입력해주세요 : ");
@@ -33,8 +33,8 @@ public class ArticleController {
         articleRepository.insert(title, body, Util.getCurrentDate());
         ArrayList<Article> list = articleRepository.getArticleList();
         req.setParameter("list", list);
-        MyListView listView = new MyListView(req);
-        listView.render();
+        req.setActionCode("list");
+        return req;
     }
 
     public void list() {

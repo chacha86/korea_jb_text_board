@@ -6,15 +6,15 @@ import myboard.common.Request;
 
 import java.util.Scanner;
 
-public class AddView {
+public class AddView implements View {
     Scanner scan;
     Request request;
     ArticleController articleController;
 
-    public AddView() {
+    public AddView(Request request) {
         scan = new Scanner(System.in);
         articleController = new ArticleController();
-        request = new Request();
+        this.request = request;
     }
 
     public void render() {
@@ -25,7 +25,10 @@ public class AddView {
 
         request.setParameter("title", title);
         request.setParameter("body", body);
-        articleController.add(request);
+        request.setActionCode("list");
+    }
 
+    public Request getRequest() {
+        return this.request;
     }
 }
